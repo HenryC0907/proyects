@@ -1,6 +1,21 @@
 import sys
 
-abc = {'a': 0, 'b': 1, 'c': 2, 'd': 3, 'e': 4, 'f': 5, 'g': 6, 'h': 7, 'i': 8, 'j': 9, 'k': 10, 'l': 11, 'm': 12, 'n': 13, 'ñ': 14, 'o': 15, 'p': 16, 'q': 17, 'r': 18, 's': 19, 't': 20, 'u': 21, 'v': 22, 'w': 23, 'x': 24, 'y': 25, 'z': 26, ' ': 27}
+abc = {
+    'A': 0, 'B': 1, 'C': 2, 'D': 3, 'E': 4, 'F': 5, 'G': 6, 'H': 7, 'I': 8, 'J': 9, 'K': 10,
+    'L': 11, 'M': 12, 'N': 13, 'Ñ': 14, 'O': 15, 'P': 16, 'Q': 17, 'R': 18, 'S': 19, 'T': 20,
+    'U': 21, 'V': 22, 'W': 23, 'X': 24, 'Y': 25, 'Z': 26,
+    'a': 27, 'b': 28, 'c': 29, 'd': 30, 'e': 31, 'f': 32, 'g': 33, 'h': 34, 'i': 35, 'j': 36,
+    'k': 37, 'l': 38, 'm': 39, 'n': 40, 'ñ': 41, 'o': 42, 'p': 43, 'q': 44, 'r': 45, 's': 46,
+    't': 47, 'u': 48, 'v': 49, 'w': 50, 'x': 51, 'y': 52, 'z': 53,
+    '0': 54, '1': 55, '2': 56, '3': 57, '4': 58, '5': 59, '6': 60, '7': 61, '8': 62, '9': 63,
+    ' ': 64, '!': 65, '"': 66, '#': 67, '$': 68, '%': 69, '&': 70, "'": 71, '(': 72, ')': 73,
+    '*': 74, '+': 75, ',': 76, '-': 77, '.': 78, '/': 79, ':': 80, ';': 81, '<': 82, '=': 83,
+    '>': 84, '?': 85, '@': 86, '[': 87, '\\': 88, ']': 89, '^': 90, '_': 91, '`': 92, '{': 93,
+    '}': 94, '~': 95, '¿': 96
+}
+
+
+n = len(abc)
 
 class cifrar:
     def __init__(self, mensaje, a, b):
@@ -15,13 +30,13 @@ class cifrar:
     def transformation(self):
         numeros = self.text_to_num()
         num_cifrado = []
-        if gcd(self.__a, 27) == 1: #correguir para que acepte espacios
+        if gcd(self.__a, n) == 1:
             for i in numeros:
                 x = (self.__a * i) + self.__b
-                num_cifrado.append(x % 27)
+                num_cifrado.append(x % n)
             return num_cifrado
         else:
-            print("El MCD de a y 27 no es 1. Programa finalizado.")
+            print("El MCD de a y {} no es 1. Programa finalizado.".format(n))
             sys.exit()
 
     def num_to_text(self):
@@ -34,10 +49,12 @@ def gcd(x, y):
         x, y = y, x % y
     return x
 
+
 text = input('mensaje: ')
 a = int(input('a: '))
 b = int(input('b: '))
 
 cifrado = cifrar(text, a, b)
 print('mensaje enciptado: ' + cifrado.num_to_text())
+
 
