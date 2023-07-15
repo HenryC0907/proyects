@@ -1,0 +1,10 @@
+1) todo comienza con <command> y termina con </command>, casi todo
+2) trata de dejar todo de forma encadenada
+3) html es un lenguaje flexible, luego puedes hacer chambonadas
+aun así, posee una estructura; manten la documentación como tu
+mejor amiga
+4) ejecuta así: firefox wea.html
+5) hay instrucciones dentro de <command>, por ejemplo id="wea", que va dentro de <> así:
+	<input id="pta la wea" type="checkbox"> pta la wea
+   Es como si se tratase de darle consideraciones a la acción.
+   Son comunmente llamados "Atributos", que son 'nested' en los elementos <command></command>
