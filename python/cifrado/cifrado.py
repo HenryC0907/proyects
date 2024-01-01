@@ -35,7 +35,7 @@ class cifrar:
                 num_cifrado.append(x % n)
             return num_cifrado
         else:
-            print("El MCD de a y {} no es 1. Programa finalizado.".format(n))
+            print("El MCD de a y {} no es 1. Coma mierda.".format(n))
             sys.exit()
 
     def num_to_text(self):
