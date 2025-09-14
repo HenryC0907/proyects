@@ -1,0 +1,10 @@
+Este código está diseñado para una tarea en "Óptica de Fourier-UNAL/2025-2".
+El objetivo es programar (con librerías) como realizar análisis de imagen usando Análisis de Fourier, específicamente en el apartado de un primer acercamiento a la compresión de imágenes.
+Al código le resta crear una categoría para filtrar con Rectangulos en vez de círculos.
+Cualquiero sugerencia messirve.
+
+Modo de Uso:
+1) Asegura de tener una imagen en un formato válido para transformarse a matrices de numpy.
+2) Escribe la dirección de la imagen a comprimir en el CMD
+3) Elije el valor para el Radio del círculo de filtro (rectángulo en algún futuro)
+4) Decide si guardar o no la imagen comprimida.
