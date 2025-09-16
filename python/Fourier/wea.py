@@ -8,16 +8,25 @@ def abrir_imagen(ruta):
     return np.array(img)
 
 # Crea filtro circular en el centro del EspectroFourier
-# Se puede cambiar por un Cuadrado si lo programas :)
-def filtro_circ(Img, R):  
-    n, m = Img.shape
-    cy, cx = n // 2, m // 2
-    Y, X = np.ogrid[:n, :m]
-    dist = np.sqrt((X - cx)**2 + (Y - cy)**2)
-    Mask = dist <= R
-    return Img * Mask
 
-def TransfoFourier(Imagen, R=100):
+def norma(a,b, n):
+  return np.power((a**n + b**n),1/n)
+def norminf(a, b):
+    return np.maximum(np.abs(a), np.abs(b))
+
+def filtro(Img, R, Select):  
+    n, m = img.shape
+  	cy, cx = n//2, m//2
+  	Y, X = np.ogrid[:n, :m]
+  	if Select == 0:
+		dist = norminf(X-cx, Y-cy)
+	elif Select > 0:
+		dist = norma(X-cx, Y-cy, Select)
+  	mask = dist <= R
+  	img_filtered = img * mask
+  	return img_filtered
+
+def TransfoFourier(Imagen, R=100, n=2):
     canales = [Imagen[:,:,i] for i in range(3)]  # R, G, B
     Color_Reconstruido = []
 
@@ -25,7 +34,7 @@ def TransfoFourier(Imagen, R=100):
         Fourier = fft2(canal)                 #Fourier
         ffase = np.fft.fftshift(Fourier)      #Pa' Corregir faseEspectro
         
-        Filtro = filtro_circ(ffase, R)
+        Filtro = filtro(ffase, R, n)          # Ultima instrucción es la norma [0, \infty), con 0 norma infinito
         ffase_inv = np.fft.ifftshift(Filtro)  #Inversa de la fase
         canal_rec = np.fft.ifft2(ffase_inv)   #Fourier^{-1}
         
@@ -40,9 +49,11 @@ Imagen = input().strip()
 
 print('Valor para filtro de Radio: ')
 R = int(input())
+print('Valor de norma: ')
+n = int(input())
 
 Imagen = abrir_imagen(Imagen)
-New = TransfoFourier(Imagen, R)
+New = TransfoFourier(Imagen, R, n)
 
 plt.figure(figsize=(10, 5))
 plt.subplot(1, 2, 1)
@@ -65,3 +76,4 @@ if Respuesta == 'y':
 	Image.fromarray(New.astype(np.uint8)).save("recovered.jpg",quality=50)
 
 	print("Archivos guardados como 'original.png' y 'recovered.png'")
+
